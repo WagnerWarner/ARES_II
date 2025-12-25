@@ -2,23 +2,6 @@
 ares_instrumentation.py
 Instrumentor adapté pour Ares (MoE/Transformer) et ETO (Cognitive).
 
-Usage dans ton script d'entraînement Ares :
-    from ares_instrumentation import AresInstrumentor
-    
-    # Instanciation
-    instr = AresInstrumentor(model, optimizer, log_dir="runs/ares_v2", sample_rate=50)
-    
-    # Enregistrement intelligent (Ares spécifique)
-    instr.register_moe_gates(model) # Trouve auto les gates MoE
-    instr.register_attention_layers(model) # Trouve les layers d'attention
-
-    # Boucle
-    instr.on_epoch_start(epoch)
-    ...
-    loss.backward()
-    instr.on_backward_complete() # Capture les gradients
-    ...
-    instr.on_batch_end(idx, current_tokens_generated)
 """
 
 import os
@@ -357,4 +340,5 @@ class AresInstrumentor:
         if self.writer: self.writer.close()
         self.activation_collector.remove_all()
         self.moe_collector.remove_all()
+
         print("[AresInstrumentor] Fermeture et nettoyage.")

@@ -1,6 +1,8 @@
 """
+POWERED BY
+PHANT©M TECHNOLOGY
 ares_instrumentation.py
-Instrumentor adapté pour Ares (MoE/Transformer) et ETO (Cognitive).
+Instrumentor adapté pour Ares (MoE/Transformer) et CS (Cognitive).
 
 """
 
@@ -334,7 +336,7 @@ class AresInstrumentor:
     def log_text_sample(self, text_input: str, text_output: str, step: int):
         """Pour logger ce que Ares raconte dans Tensorboard."""
         if self.writer:
-            self.writer.add_text("generation", f"**In:** {text_input}\n\n**Ares:** {text_output}", step)
+            self.writer.add_text("POWERED BY PHANT©M TECHNOLOGY", f"**In:** {text_input}\n\n**Ares:** {text_output}", step)
 
     def close(self):
         if self.writer: self.writer.close()
@@ -342,3 +344,4 @@ class AresInstrumentor:
         self.moe_collector.remove_all()
 
         print("[AresInstrumentor] Fermeture et nettoyage.")
+
